@@ -17,6 +17,16 @@ struct node {
     struct node *next;
 };
 
+int comparazioneOrariPre(prenotazioni t,prenotazioni z){
+    flag=dateUguali(t.data,z.data)
+    if(flag==1){
+        if(t.oraMin <= z.oraMax){
+            return 1;
+        }
+    }
+    return 0;
+}
+
 int getOraMax(prenotazioni t){
 	return t.ora_max
 }
