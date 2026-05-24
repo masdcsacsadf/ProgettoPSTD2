@@ -105,23 +105,9 @@ int sizeList(list l) {
     return count;
 }
 
-
-
-prenotazioni getItem(list l, int pos) {
-    int count = 1;
-    while (l != NULL) {
-        if (count == pos) {
-            return l->value;
-        }
-        count++;
-        l = l->next;
-    }
-    return NULLITEM;
+prenotazione getItem(lista l){
+    return l.value;
 }
-
-
-
-
 
 void outputList(list l) {
     while (l != NULL) {
