@@ -20,7 +20,7 @@ struct node {
 int comparazioneOrariPre(prenotazioni t,prenotazioni z){
     flag=dateUguali(t.data,z.data)
     if(flag==1){
-        if(t.oraMin <= z.oraMax){
+        if(t.oraMin => z.oraMax){
             return 1;
         }
     }
