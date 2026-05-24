@@ -1,0 +1,97 @@
+#include<stdio.h>
+#include<stdlib.h>
+
+typedef struct{
+	int anno;	
+	int mese;	
+	int giorno;	//se mese==1 || 3 || 5 || 7 || 8 || 10 || 12  giorno==3	\ se mese==4 || 6 || 9 || 11 giorni==30 \ se mese==2 28 o 29 se bisestile
+}data;
+
+typedef struct{
+	data date;
+	int ora;
+}dataCorrente;
+
+int getAnno(data t){
+	return data.anno;
+}
+
+data impostaData(int a,int m,int g){
+	data t;
+	t.anno=a;
+	if((m==1)||(m==3)||(m=5)||(m==7)||(m==8)||(m==10)||(m==12)){
+		if((g>0)&&(g<=31)){
+			t.mese=m;
+			t.giorno=g;
+			return t;
+		}
+	}
+	if((m==4)||(m==6)||(m==9)||(m==11)){
+		if((g>0)&&(g<=30)){
+			t.mese=m;
+			t.giorno=g;
+			return t;
+		}		
+	}
+	if(m==2){
+		if((a%4==0)&&(a%100!=0)||(a%400==0)){
+			if((g>0)&&(g<=29)){
+				t.mese=m;
+				t.giorno=g;
+				return t;
+			}	
+		}
+		if((g>0)&&(g<=28)){
+			t.mese=m;
+			t.giorno=g;
+			return t;
+		}	
+	}
+	t.anno=-1;
+	return t;
+}
+
+dataCorrente impostaDataCorr(int a, int m, int g, int o){
+
+	dataCorrente dc;
+
+	dc.date = impostaData(a,m,g);
+
+	if( dc.date.anno == -1){
+		printf("ERRORE DATA INCORRETTA");
+		dc.ora = -1;
+		return dc;
+	}else if(o >= 0 && o <= 23){
+
+		printf("ERRORE ORA INCORRETTA");
+		dc.ora = -1;
+		return dc;
+	}
+	dc.ora = o;
+	return dc;
+
+}
+
+
+int dataValidCheck(int n, data d, dataCorrente dc){
+
+	if(d.anno < dc.date.anno){
+
+		return 1;
+
+	}else if(d.mese < dc.date.mese){
+
+		return 1;
+
+	}else if(d.mese == dc.date.mese && d.giorno < dc.date.giorno){
+
+		return 1;
+
+	}else if(n < dc.ora){
+
+		return 1;
+
+	}
+
+	return 0;
+}
